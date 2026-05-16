@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useMemo, memo } from 'react';
 import {
   Client1,
   Client2,
@@ -21,17 +21,33 @@ import {
   Client19,
   Client20,
 } from '@/assets';
+import { OptimizedImage } from '@/components';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Memoized LogoCard component to prevent unnecessary re-renders
+const LogoCard = memo(({ logo, keyPrefix }) => (
+  <div className="bg-white rounded-xl p-5 shadow-sm w-[160px] h-[120px] md:w-[180px] md:h-[130px] flex items-center justify-center flex-shrink-0 mx-3">
+    <OptimizedImage
+      src={logo.src}
+      alt={logo.alt}
+      width={140}
+      height={90}
+      objectFit="contain"
+    />
+  </div>
+));
+
+LogoCard.displayName = 'LogoCard';
+
 const ClientsSection = () => {
   const containerRef = useRef(null);
 
-  // Row 1 logos (moving right to left)
-  const row1Logos = [
+  // Memoize logo arrays to prevent recreation on every render
+  const row1Logos = useMemo(() => [
     { src: Client1, alt: 'Tata Realty' },
     { src: Client2, alt: 'Mankind' },
     { src: Client3, alt: 'NIMS University' },
@@ -39,10 +55,9 @@ const ClientsSection = () => {
     { src: Client5, alt: 'Avery Dennison' },
     { src: Client6, alt: 'Oji JK Packaging' },
     { src: Client7, alt: 'Tata Communications' },
-  ];
+  ], []);
 
-  // Row 2 logos (moving left to right)
-  const row2Logos = [
+  const row2Logos = useMemo(() => [
     { src: Client8, alt: 'Impact Kerala' },
     { src: Client9, alt: 'RUIDP' },
     { src: Client10, alt: 'Assam Cancer Care Foundation' },
@@ -56,7 +71,7 @@ const ClientsSection = () => {
     { src: Client18, alt: 'Client 18' },
     { src: Client19, alt: 'Client 19' },
     { src: Client20, alt: 'Client 20' },
-  ];
+  ], []);
 
   useGSAP(() => {
     const mm = gsap.matchMedia();
@@ -177,29 +192,11 @@ const ClientsSection = () => {
             <div className="flex animate-scroll-left w-max">
               {/* Original logos */}
               {row1Logos.map((logo, index) => (
-                <div
-                  key={`row1-${index}`}
-                  className="bg-white rounded-xl p-5 shadow-sm w-[160px] h-[120px] md:w-[180px] md:h-[130px] flex items-center justify-center flex-shrink-0 mx-3"
-                >
-                  <img
-                    src={logo.src}
-                    alt={logo.alt}
-                    className="object-contain w-full h-full max-w-[140px] max-h-[90px]"
-                  />
-                </div>
+                <LogoCard key={`row1-${index}`} logo={logo} />
               ))}
               {/* Duplicated logos for seamless loop */}
               {row1Logos.map((logo, index) => (
-                <div
-                  key={`row1-dup-${index}`}
-                  className="bg-white rounded-xl p-5 shadow-sm w-[160px] h-[120px] md:w-[180px] md:h-[130px] flex items-center justify-center flex-shrink-0 mx-3"
-                >
-                  <img
-                    src={logo.src}
-                    alt={logo.alt}
-                    className="object-contain w-full h-full max-w-[140px] max-h-[90px]"
-                  />
-                </div>
+                <LogoCard key={`row1-dup-${index}`} logo={logo} />
               ))}
             </div>
           </div>
@@ -209,29 +206,11 @@ const ClientsSection = () => {
             <div className="flex animate-scroll-right w-max">
               {/* Original logos */}
               {row2Logos.map((logo, index) => (
-                <div
-                  key={`row2-${index}`}
-                  className="bg-white rounded-xl p-5 shadow-sm w-[160px] h-[120px] md:w-[180px] md:h-[130px] flex items-center justify-center flex-shrink-0 mx-3"
-                >
-                  <img
-                    src={logo.src}
-                    alt={logo.alt}
-                    className="object-contain w-full h-full max-w-[140px] max-h-[90px]"
-                  />
-                </div>
+                <LogoCard key={`row2-${index}`} logo={logo} />
               ))}
               {/* Duplicated logos for seamless loop */}
               {row2Logos.map((logo, index) => (
-                <div
-                  key={`row2-dup-${index}`}
-                  className="bg-white rounded-xl p-5 shadow-sm w-[160px] h-[120px] md:w-[180px] md:h-[130px] flex items-center justify-center flex-shrink-0 mx-3"
-                >
-                  <img
-                    src={logo.src}
-                    alt={logo.alt}
-                    className="object-contain w-full h-full max-w-[140px] max-h-[90px]"
-                  />
-                </div>
+                <LogoCard key={`row2-dup-${index}`} logo={logo} />
               ))}
             </div>
           </div>

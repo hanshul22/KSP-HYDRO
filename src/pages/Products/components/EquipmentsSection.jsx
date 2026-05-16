@@ -4,9 +4,15 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Equipement1, Equipement2, Equipement3, Equipement4, Equipement5, Equipement6, Equipement7 } from '@/assets';
-import { LazyVideo, LazyImage } from '@/components/lazy';
+import { OptimizedImage, OptimizedVideo } from '@/components';
+import { equipmentCloudinaryIds } from '@/data/cloudinaryMapping';
 
 gsap.registerPlugin(ScrollTrigger);
+
+// ─────────────────────────────────────────────────────────
+// TOGGLE: Set to true to use Cloudinary, false for local files
+// ─────────────────────────────────────────────────────────
+const USE_CLOUDINARY = false;  // ← Change to true when ready to use Cloudinary
 
 const equipments = [
   {
@@ -21,9 +27,11 @@ const equipments = [
       "Corrosion-resistant materials",
       "Low power consumption"
     ],
-    image: Equipement1,
+    localImage: Equipement1,
+    cloudinaryId: equipmentCloudinaryIds.Equipement1,
     isReversed: false,
-    badgeText: "Product"
+    badgeText: "Product",
+    isVideo: false
   },
   {
     id: 2,
@@ -37,9 +45,11 @@ const equipments = [
       "Automated alerts",
       "Cloud connectivity"
     ],
-    image: Equipement2,
+    localImage: Equipement2,
+    cloudinaryId: equipmentCloudinaryIds.Equipement2,
     isReversed: true,
-    badgeText: "Product"
+    badgeText: "Product",
+    isVideo: false
   },
   {
     id: 3,
@@ -53,7 +63,9 @@ const equipments = [
       "Predictive maintenance",
       "Energy optimization"
     ],
-    image: Equipement3,
+    localImage: Equipement3,
+    cloudinaryId: equipmentCloudinaryIds.Equipement3,
+    cloudinaryPosterId: equipmentCloudinaryIds.Equipement3Poster,
     isReversed: false,
     badgeText: "Video Demo",
     isVideo: true
@@ -70,9 +82,11 @@ const equipments = [
       "Corrosion-resistant construction",
       "Uniform collection"
     ],
-    image: Equipement4,
+    localImage: Equipement4,
+    cloudinaryId: equipmentCloudinaryIds.Equipement4,
     isReversed: true,
-    badgeText: "Product"
+    badgeText: "Product",
+    isVideo: false
   },
   {
     id: 5,
@@ -86,9 +100,11 @@ const equipments = [
       "Automated duty-standby switching",
       "Dry-run protection"
     ],
-    image: Equipement5,
+    localImage: Equipement5,
+    cloudinaryId: equipmentCloudinaryIds.Equipement5,
     isReversed: false,
-    badgeText: "Product"
+    badgeText: "Product",
+    isVideo: false
   },
   {
     id: 6,
@@ -102,9 +118,11 @@ const equipments = [
       "Odor control system",
       "Automated operation"
     ],
-    image: Equipement6,
+    localImage: Equipement6,
+    cloudinaryId: equipmentCloudinaryIds.Equipement6,
     isReversed: true,
-    badgeText: "Product"
+    badgeText: "Product",
+    isVideo: false
   },
   {
     id: 7,
@@ -118,7 +136,9 @@ const equipments = [
       "Low chemical consumption",
       "Automated sludge removal"
     ],
-    image: Equipement7,
+    localImage: Equipement7,
+    cloudinaryId: equipmentCloudinaryIds.Equipement7,
+    cloudinaryPosterId: equipmentCloudinaryIds.Equipement7Poster,
     isReversed: false,
     badgeText: "Video Demo",
     isVideo: true
@@ -127,7 +147,6 @@ const equipments = [
 
 const EquipmentItem = ({ equip }) => {
   const itemRef = useRef(null);
-  const isVideo = equip.image?.toString().toLowerCase().includes('.mp4');
 
   useGSAP(() => {
     const tl = gsap.timeline({
@@ -157,18 +176,23 @@ const EquipmentItem = ({ equip }) => {
       {/* Image/Video Card */}
       <div className="equip-card lg:flex-[0_0_42%] relative w-full">
         <div className="rounded-xl overflow-hidden shadow-lg bg-slate-50 relative">
-          {isVideo ? (
-            <LazyVideo
-              src={equip.image}
+          {equip.isVideo ? (
+            <OptimizedVideo
+              publicId={USE_CLOUDINARY ? equip.cloudinaryId : undefined}
+              posterPublicId={USE_CLOUDINARY ? equip.cloudinaryPosterId : undefined}
+              src={USE_CLOUDINARY ? undefined : equip.localImage}
               autoPlay
               muted
               loop
               playsInline
+              width={800}
+              height={450}
               className="w-full h-full aspect-video"
             />
           ) : (
-            <LazyImage
-              src={equip.image}
+            <OptimizedImage
+              publicId={USE_CLOUDINARY ? equip.cloudinaryId : undefined}
+              src={USE_CLOUDINARY ? undefined : equip.localImage}
               alt={equip.title}
               width={800}
               height={450}

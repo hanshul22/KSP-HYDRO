@@ -6,6 +6,37 @@ body {
   overflow-x: hidden;
 }
 
+/* ============================================
+   IMAGE LAZY LOADING - SMOOTH FADE-IN
+   ============================================ */
+
+/* All images start invisible */
+img {
+  /* opacity: 0; */
+  transition: opacity 0.4s ease-in-out;
+  will-change: opacity;
+  transform: translateZ(0);
+}
+
+/* Images become visible when loaded */
+img.loaded {
+  opacity: 1;
+}
+
+/* Hero/eager images should always be visible immediately */
+img[loading="eager"] {
+  opacity: 1;
+}
+
+/* Prevent layout shift during image load */
+img[width][height] {
+  height: auto;
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
@@ -17,6 +48,7 @@ body {
 
 ::-webkit-scrollbar-thumb {
   @apply transition-colors bg-teal-500 rounded-full hover:bg-teal-600;
+  will-change: background-color;
 }
 
 /* For Firefox */

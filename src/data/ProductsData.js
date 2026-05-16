@@ -452,7 +452,7 @@ const ProductsData = [
     svg: "right",
     headerIcon: { type: "settings", bgColor: "#155DFC", iconColor: "#FFFFFF" },
     sections: {
-      whatItIs: {
+        whatItIs: {
         title: "What It Is",
         description:
           "Specialized equipment and automation systems designed to enhance the efficiency and reliability of water treatment operations.",

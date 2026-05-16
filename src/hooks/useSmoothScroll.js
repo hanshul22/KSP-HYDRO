@@ -57,12 +57,12 @@ const useSmoothScroll = () => {
 
         // Initialize Lenis
         const lenis = new Lenis({
-            duration: 1.2,
+            duration: 1.0,        // Reduced from 1.2 for snappier feel
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Default easing
             orientation: 'vertical',
             gestureOrientation: 'vertical',
             smoothWheel: true,
-            wheelMultiplier: 1,
+            wheelMultiplier: 0.8, // Reduced from 1 for less aggressive scrolling
             touchMultiplier: isTouch ? 2 : 1, // Less inertia on touch
             infinite: false,
         });

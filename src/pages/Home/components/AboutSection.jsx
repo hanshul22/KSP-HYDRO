@@ -1,7 +1,8 @@
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import aboutImage from '@/assets/images/about.png';
+import aboutImage from '@/assets/images/about.webp';
+import { OptimizedImage } from '@/components';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -153,16 +154,15 @@ const AboutSection = () => {
 
             {/* Image - Added for mobile */}
             <div className="w-full px-0 about-image">
-              <div className="relative overflow-hidden shadow-2xl aspect-square rounded-xl">
-                <img
-                  src={aboutImage}
-                  alt="Aerial view of wastewater treatment tanks at KSP Hydro Engineers facility"
-                  loading="lazy"
-                  width="400"
-                  height="400"
-                  className="object-cover w-full h-full"
-                />
-              </div>
+              <OptimizedImage
+                src={aboutImage}
+                alt="Aerial view of wastewater treatment tanks at KSP Hydro Engineers facility"
+                width={400}
+                height={400}
+                responsive={true}
+                sizes="(max-width: 768px) 100vw, 400px"
+                className="rounded-xl shadow-2xl"
+              />
             </div>
           </div>
         </div>
@@ -171,16 +171,15 @@ const AboutSection = () => {
         <div className="items-center hidden gap-8 md:grid lg:grid-cols-2 lg:gap-12">
           {/* Left Side - Image */}
           <div className="relative about-image">
-            <div className="relative overflow-hidden shadow-lg rounded-lg">
-              <img
-                src={aboutImage}
-                alt="Aerial view of wastewater treatment tanks at KSP Hydro Engineers facility"
-                loading="lazy"
-                width="600"
-                height="400"
-                className="object-cover w-full h-full"
-              />
-            </div>
+            <OptimizedImage
+              src={aboutImage}
+              alt="Aerial view of wastewater treatment tanks at KSP Hydro Engineers facility"
+              width={600}
+              height={400}
+              responsive={true}
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+              className="rounded-lg shadow-lg"
+            />
           </div>
 
           {/* Right Side - Content */}

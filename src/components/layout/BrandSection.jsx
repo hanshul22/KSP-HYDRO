@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import logo from '@/assets/images/logo.png';
+import { OptimizedImage } from '@/components';
 
 /**
  * BrandSection - Company logo and branding display
@@ -8,10 +9,14 @@ import logo from '@/assets/images/logo.png';
 const BrandSection = () => {
   return (
     <Link to="/" className="flex items-center gap-2 md:gap-3 shrink-0 group">
-      <img 
-        src={logo} 
-        alt="KSP Hydro Engineers" 
-        className="w-9 h-9 md:w-11 md:h-11 object-contain transition-transform group-hover:scale-110" 
+      <OptimizedImage
+        src={logo}
+        alt="KSP Hydro Engineers"
+        width={44}
+        height={44}
+        eager={true}
+        className="transition-transform group-hover:scale-110"
+        objectFit="contain"
       />
       <div className="flex flex-col">
         <span className="text-gray-900 font-bold text-sm md:text-[17px] leading-tight tracking-tight">

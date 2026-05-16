@@ -11,6 +11,7 @@ const Services = lazy(() => import('@/pages/Services/Services.jsx'));
 const Contact = lazy(() => import('@/pages/Contact/Contact.jsx'));
 const KnowledgeCenter = lazy(() => import('@/pages/KnowledgeCenter/KnowledgeCenter.jsx'));
 const Projects = lazy(() => import('@/pages/Projects/Projects.jsx'));
+const CloudinaryTest = lazy(() => import('@/pages/CloudinaryTest.jsx'));
 const NotFound = lazy(() => import('@/pages/NotFound/NotFound.jsx'));
 
 // Loading Fallback
@@ -32,6 +33,7 @@ const router = createBrowserRouter(
         { path: '/projects', element: <Suspense fallback={<PageLoader />}><Projects /></Suspense> },
         { path: '/knowledge-center', element: <Suspense fallback={<PageLoader />}><KnowledgeCenter /></Suspense> },
         { path: '/contact', element: <Suspense fallback={<PageLoader />}><Contact /></Suspense> },
+        { path: '/cloudinary-test', element: <Suspense fallback={<PageLoader />}><CloudinaryTest /></Suspense> },
         { path: '*', element: <Suspense fallback={<PageLoader />}><NotFound /></Suspense> },
       ],
     },

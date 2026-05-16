@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { waterDrop } from '@/assets';
+import { OptimizedImage } from '@/components';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -182,15 +183,15 @@ const Hero = () => {
               />
 
               {/* Water Droplet Image */}
-              <div className="relative flex items-center justify-center w-full p-6 aspect-square">
-                <img
+              <div className="relative flex items-center justify-center w-full p-6">
+                <OptimizedImage
                   src={waterDrop}
-                  alt="Water Droplet"
-                  className="object-contain w-full h-full drop-shadow-2xl"
-                  width="340"
-                  height="340"
-                  fetchPriority="high"
-                  loading="eager"
+                  alt="Water Droplet representing KSP Hydro Engineers' water treatment solutions"
+                  width={330}
+                  height={410}
+                  eager={true}
+                  className="drop-shadow-2xl"
+                  objectFit="contain"
                 />
               </div>
             </div>

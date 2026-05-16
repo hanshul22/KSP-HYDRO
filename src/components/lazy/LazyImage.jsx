@@ -1,10 +1,11 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useMemo } from 'react';
+import { useLazyLoad } from '@/hooks';
 
 /**
  * LazyImage - Optimized image component with lazy loading
  * Features:
- * - Native lazy loading with IntersectionObserver fallback
- * - Blur-up placeholder effect
+ * - Lazy loading with SHARED IntersectionObserver (performance optimized)
+ * - Smooth fade-in transition
  * - Prevents layout shift with aspect ratio
  * - Responsive image support
  * 
@@ -28,47 +29,22 @@ const LazyImage = ({
   ...props
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isInView, setIsInView] = useState(priority);
-  const imgRef = useRef(null);
+  const { ref, isInView } = useLazyLoad(priority);
 
-  useEffect(() => {
-    if (priority) return;
+  // Memoize container style
+  const containerStyle = useMemo(() => ({
+    aspectRatio: width && height ? `${width} / ${height}` : undefined,
+    backgroundColor: '#ffffff'
+  }), [width, height]);
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-          observer.disconnect();
-        }
-      },
-      {
-        rootMargin: '50px',
-        threshold: 0.01
-      }
-    );
-
-    const currentRef = imgRef.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, [priority]);
-
-  const aspectRatio = width && height ? `${width} / ${height}` : undefined;
+  // Memoize img style
+  const imgStyle = useMemo(() => ({ objectFit }), [objectFit]);
 
   return (
     <div
-      ref={imgRef}
+      ref={ref}
       className={`relative overflow-hidden ${className}`}
-      style={{
-        aspectRatio,
-        backgroundColor: '#ffffff'
-      }}
+      style={containerStyle}
     >
       {isInView && (
         <>
@@ -84,10 +60,10 @@ const LazyImage = ({
             loading={priority ? 'eager' : 'lazy'}
             fetchPriority={priority ? 'high' : 'auto'}
             onLoad={() => setIsLoaded(true)}
-            className={`w-full h-full transition-opacity duration-300 ${
+            className={`w-full h-full transition-opacity duration-400 ease-in-out ${
               isLoaded ? 'opacity-100' : 'opacity-0'
             }`}
-            style={{ objectFit }}
+            style={imgStyle}
             width={width}
             height={height}
             {...props}

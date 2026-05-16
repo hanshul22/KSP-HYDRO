@@ -39,13 +39,17 @@ const ScrollToHashElement = () => {
         if (element) {
           // Calculate scroll position with navbar offset
           const navbarHeight = 120; // Fixed navbar height + padding
-          const elementPosition = element.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+          
+          // Wrap getBoundingClientRect in requestAnimationFrame to batch layout reads
+          requestAnimationFrame(() => {
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
 
-          // Smooth scroll to calculated position
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
+            // Smooth scroll to calculated position
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
           });
 
           /**

@@ -99,12 +99,16 @@ const HeroSection = () => {
     const element = document.getElementById(slug);
     if (element) {
       const headerOffset = 100; // Adjust for fixed header
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      
+      // Wrap getBoundingClientRect in requestAnimationFrame to batch layout reads
+      requestAnimationFrame(() => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
       });
     }
   };

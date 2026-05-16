@@ -21,46 +21,55 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
   },
   build: {
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+        pure_funcs: ['console.log']
+      }
+    },
+    chunkSizeWarningLimit: 500,
     rollupOptions: {
       output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'ui-vendor': [
-            '@radix-ui/react-accordion',
-            '@radix-ui/react-alert-dialog',
-            '@radix-ui/react-aspect-ratio',
-            '@radix-ui/react-avatar',
-            '@radix-ui/react-checkbox',
-            '@radix-ui/react-collapsible',
-            '@radix-ui/react-context-menu',
-            '@radix-ui/react-dialog',
-            '@radix-ui/react-dropdown-menu',
-            '@radix-ui/react-hover-card',
-            '@radix-ui/react-label',
-            '@radix-ui/react-menubar',
-            '@radix-ui/react-navigation-menu',
-            '@radix-ui/react-popover',
-            '@radix-ui/react-progress',
-            '@radix-ui/react-radio-group',
-            '@radix-ui/react-scroll-area',
-            '@radix-ui/react-select',
-            '@radix-ui/react-separator',
-            '@radix-ui/react-slider',
-            '@radix-ui/react-slot',
-            '@radix-ui/react-switch',
-            '@radix-ui/react-tabs',
-            '@radix-ui/react-toast',
-            '@radix-ui/react-toggle',
-            '@radix-ui/react-toggle-group',
-            '@radix-ui/react-tooltip',
-            'lucide-react',
-            'framer-motion',
-            'clsx',
-            'tailwind-merge',
-            'tailwindcss-animate'
-          ],
-          'animation-vendor': ['gsap', '@gsap/react', 'lenis'],
-          'utils-vendor': ['date-fns', 'react-hook-form', 'zod', '@hookform/resolvers', 'sonner']
+        manualChunks: (id) => {
+          // Route-based code splitting
+          if (id.includes('src/pages/Home')) {
+            return 'home';
+          }
+          if (id.includes('src/pages/Products')) {
+            return 'products';
+          }
+          if (id.includes('src/pages/Services')) {
+            return 'services';
+          }
+          if (id.includes('src/pages/Projects')) {
+            return 'projects';
+          }
+          if (id.includes('src/pages/About')) {
+            return 'about';
+          }
+          if (id.includes('src/pages/Contact')) {
+            return 'contact';
+          }
+          
+          // Vendor chunks
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
+              return 'react-vendor';
+            }
+            if (id.includes('@radix-ui') || id.includes('lucide-react') || id.includes('framer-motion') || 
+                id.includes('clsx') || id.includes('tailwind-merge') || id.includes('tailwindcss-animate')) {
+              return 'ui-vendor';
+            }
+            if (id.includes('gsap') || id.includes('lenis')) {
+              return 'animation-vendor';
+            }
+            if (id.includes('date-fns') || id.includes('react-hook-form') || id.includes('zod') || 
+                id.includes('@hookform/resolvers') || id.includes('sonner')) {
+              return 'utils-vendor';
+            }
+          }
         }
       }
     }

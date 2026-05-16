@@ -30,6 +30,7 @@
   transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
   padding: 40px 0;
   will-change: transform;
+  transform: translateZ(0);
 }
 
 .testimonialCardWrapper {
@@ -85,13 +86,14 @@
   color: #3e4654;
   font-size: 20px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .navButton:hover {
   background: #f0f4ff;
   border-color: #8aa6ff;
   color: #8aa6ff;
+  will-change: background-color, transform;
 }
 
 .dots {

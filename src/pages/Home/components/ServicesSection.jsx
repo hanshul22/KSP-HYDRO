@@ -58,7 +58,7 @@ const ServicesSection = () => {
 
         if (prefersReducedMotion) {
           // Fade in for reduced motion
-          gsap.to('.service-card', { opacity: 1, duration: 0.8, stagger: 0.2 });
+          gsap.to('.service-card', { opacity: 1, duration: 0.8, stagger: 0.2, force3D: true });
           return;
         }
 
@@ -72,7 +72,9 @@ const ServicesSection = () => {
               pin: true,
               pinSpacing: true,
               scrub: 1, // Smooth scrubbing
-              anticipatePin: 1
+              anticipatePin: 1,
+              fastScrollEnd: true,
+              force3D: true
             }
           });
 
@@ -85,7 +87,8 @@ const ServicesSection = () => {
             scaleX: 1,
             duration: 1.5,
             ease: "none",
-            transformOrigin: "left center"
+            transformOrigin: "left center",
+            force3D: true
           }, 0);
 
           // 3. Reveal Cards Sequentially
@@ -98,7 +101,8 @@ const ServicesSection = () => {
               y: 0,
               opacity: 1,
               duration: 0.8,
-              ease: "power2.out"
+              ease: "power2.out",
+              force3D: true
             }, startTime);
           });
         }
@@ -112,7 +116,8 @@ const ServicesSection = () => {
             scrollTrigger: {
               trigger: containerRef.current,
               start: "top 80%",
-              toggleActions: "play reverse play reverse"
+              toggleActions: "play reverse play reverse",
+              fastScrollEnd: true
             }
           });
 
@@ -121,7 +126,8 @@ const ServicesSection = () => {
             opacity: 1,
             duration: 0.6,
             stagger: 0.2,
-            ease: "power2.out"
+            ease: "power2.out",
+            force3D: true
           });
         }
       }
@@ -145,7 +151,8 @@ const ServicesSection = () => {
             y: -4,
             boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
             duration: 0.3,
-            ease: "power2.out"
+            ease: "power2.out",
+            force3D: true
           }, 0);
         }
 
@@ -155,7 +162,8 @@ const ServicesSection = () => {
             y: -4,
             scale: 1.05,
             duration: 0.3,
-            ease: "power2.out"
+            ease: "power2.out",
+            force3D: true
           }, 0);
         }
 
@@ -164,7 +172,8 @@ const ServicesSection = () => {
           hoverTl.to(link, {
             x: 4,
             duration: 0.3,
-            ease: "power2.out"
+            ease: "power2.out",
+            force3D: true
           }, 0);
         }
 

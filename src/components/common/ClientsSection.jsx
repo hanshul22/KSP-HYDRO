@@ -29,7 +29,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 // Memoized LogoCard component to prevent unnecessary re-renders
-const LogoCard = memo(({ logo, keyPrefix }) => (
+const LogoCard = memo(({ logo }) => (
   <div className="bg-white rounded-xl p-5 shadow-sm w-[160px] h-[120px] md:w-[180px] md:h-[130px] flex items-center justify-center flex-shrink-0 mx-3">
     <OptimizedImage
       src={logo.src}

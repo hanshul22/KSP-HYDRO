@@ -34,6 +34,7 @@ vi.mock('../../lib/cloudinary', () => ({
 
 // Mock AdvancedVideo
 vi.mock('@cloudinary/react', () => ({
+  // eslint-disable-next-line no-unused-vars
   AdvancedVideo: ({ cldVid, onLoadedData, style, ...props }) => {
     // Simulate video loading
     setTimeout(() => {

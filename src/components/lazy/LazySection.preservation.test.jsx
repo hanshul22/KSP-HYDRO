@@ -26,6 +26,7 @@ describe('LazySection - Preservation Property Tests', () => {
     observedElements = new Set();
     
     // Mock IntersectionObserver
+    // eslint-disable-next-line no-unused-vars
     mockIntersectionObserver = vi.fn((callback, options) => {
       observerCallback = callback;
       return {
@@ -41,6 +42,7 @@ describe('LazySection - Preservation Property Tests', () => {
       };
     });
 
+    // eslint-disable-next-line no-undef
     global.IntersectionObserver = mockIntersectionObserver;
   });
 
@@ -195,7 +197,7 @@ describe('LazySection - Preservation Property Tests', () => {
        */
       
       // Act: Render LazySection
-      const { container } = render(
+      render(
         <LazySection>
           <div data-testid="lazy-content">Lazy content</div>
         </LazySection>

@@ -55,12 +55,12 @@ export { default as Equipement7 } from './images/Equipements/Equipement7.mp4';
 
 // New Products Directory
 export { default as Prd1 } from './Products/Prd1.mp4';
-export { default as Prd2 } from './Products/Prd2.webp';
+export { default as Prd2 } from './Products/prd2.webp';
 export { default as Prd3 } from './Products/Prd3.mp4';
 export { default as Prd4 } from './Products/Prd4.mp4';
 export { default as Prd5 } from './Products/Prd5.mp4';
 export { default as Prd6 } from './Products/Prd6.mp4';
-export { default as Prd7 } from './Products/Prd7.webp';
+export { default as Prd7 } from './Products/prd7.webp';
 export { default as Prd8 } from './Products/Prd8.mp4';
 export { default as Prd9 } from './Products/Prd9.mp4';
 export { default as Prd10 } from './Products/Prj10.mp4';

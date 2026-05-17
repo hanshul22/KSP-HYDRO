@@ -4,15 +4,8 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Equipement1, Equipement2, Equipement3, Equipement4, Equipement5, Equipement6, Equipement7 } from '@/assets';
-import { OptimizedImage, OptimizedVideo } from '@/components';
-import { equipmentCloudinaryIds } from '@/data/cloudinaryMapping';
 
 gsap.registerPlugin(ScrollTrigger);
-
-// ─────────────────────────────────────────────────────────
-// TOGGLE: Set to true to use Cloudinary, false for local files
-// ─────────────────────────────────────────────────────────
-const USE_CLOUDINARY = true;  // ← Using Cloudinary for production
 
 const equipments = [
   {
@@ -27,8 +20,7 @@ const equipments = [
       "Corrosion-resistant materials",
       "Low power consumption"
     ],
-    localImage: Equipement1,
-    cloudinaryId: equipmentCloudinaryIds.Equipement1,
+    image: Equipement1,
     isReversed: false,
     badgeText: "Product",
     isVideo: false
@@ -45,8 +37,7 @@ const equipments = [
       "Automated alerts",
       "Cloud connectivity"
     ],
-    localImage: Equipement2,
-    cloudinaryId: equipmentCloudinaryIds.Equipement2,
+    image: Equipement2,
     isReversed: true,
     badgeText: "Product",
     isVideo: false
@@ -63,9 +54,7 @@ const equipments = [
       "Predictive maintenance",
       "Energy optimization"
     ],
-    localImage: Equipement3,
-    cloudinaryId: equipmentCloudinaryIds.Equipement3,
-    cloudinaryPosterId: equipmentCloudinaryIds.Equipement3Poster,
+    image: Equipement3,
     isReversed: false,
     badgeText: "Video Demo",
     isVideo: true
@@ -82,8 +71,7 @@ const equipments = [
       "Corrosion-resistant construction",
       "Uniform collection"
     ],
-    localImage: Equipement4,
-    cloudinaryId: equipmentCloudinaryIds.Equipement4,
+    image: Equipement4,
     isReversed: true,
     badgeText: "Product",
     isVideo: false
@@ -100,8 +88,7 @@ const equipments = [
       "Automated duty-standby switching",
       "Dry-run protection"
     ],
-    localImage: Equipement5,
-    cloudinaryId: equipmentCloudinaryIds.Equipement5,
+    image: Equipement5,
     isReversed: false,
     badgeText: "Product",
     isVideo: false
@@ -118,8 +105,7 @@ const equipments = [
       "Odor control system",
       "Automated operation"
     ],
-    localImage: Equipement6,
-    cloudinaryId: equipmentCloudinaryIds.Equipement6,
+    image: Equipement6,
     isReversed: true,
     badgeText: "Product",
     isVideo: false
@@ -136,9 +122,7 @@ const equipments = [
       "Low chemical consumption",
       "Automated sludge removal"
     ],
-    localImage: Equipement7,
-    cloudinaryId: equipmentCloudinaryIds.Equipement7,
-    cloudinaryPosterId: equipmentCloudinaryIds.Equipement7Poster,
+    image: Equipement7,
     isReversed: false,
     badgeText: "Video Demo",
     isVideo: true
@@ -177,27 +161,18 @@ const EquipmentItem = ({ equip }) => {
       <div className="equip-card lg:flex-[0_0_42%] relative w-full">
         <div className="rounded-xl overflow-hidden shadow-lg bg-slate-50 relative">
           {equip.isVideo ? (
-            <OptimizedVideo
-              publicId={USE_CLOUDINARY ? equip.cloudinaryId : undefined}
-              posterPublicId={USE_CLOUDINARY ? equip.cloudinaryPosterId : undefined}
-              src={USE_CLOUDINARY ? undefined : equip.localImage}
-              autoPlay
-              muted
-              loop
+            <video
+              src={equip.image}
+              controls
+              controlsList="nodownload"
               playsInline
-              width={800}
-              height={450}
-              className="w-full h-full aspect-video"
+              className="w-full h-full aspect-video object-cover bg-black"
             />
           ) : (
-            <OptimizedImage
-              publicId={USE_CLOUDINARY ? equip.cloudinaryId : undefined}
-              src={USE_CLOUDINARY ? undefined : equip.localImage}
+            <img
+              src={equip.image}
               alt={equip.title}
-              width={800}
-              height={450}
-              className="w-full h-full aspect-video"
-              objectFit="cover"
+              className="w-full h-full aspect-video object-cover"
             />
           )}
           <div className="absolute top-4 right-4 z-10">

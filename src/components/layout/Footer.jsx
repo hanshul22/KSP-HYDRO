@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import {logo} from '@/assets';
-import { OptimizedImage } from '@/components';
 
 const Footer = () => {
   return (
@@ -12,13 +11,12 @@ const Footer = () => {
           {/* Left Column - Company Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <OptimizedImage
+              <img
                 src={logo}
                 alt="KSP Hydro Engineers Logo"
                 width={44}
                 height={44}
-                eager={true}
-                objectFit="contain"
+                className="object-contain"
               />
               <div className="text-base font-semibold leading-tight">
                 KSP Hydro Engineers Pvt. Ltd.

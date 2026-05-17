@@ -5,33 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { OptimizedVideo, OptimizedImage } from '@/components';
-import { productCloudinaryIds } from '@/data/cloudinaryMapping';
-
-// Import local poster images for videos
-import prdImg1 from '@/assets/Products/prd-img1.webp';
-import prdImg3 from '@/assets/Products/prd-img3.webp';
-import prdImg4 from '@/assets/Products/prd-img4.webp';
-import prdImg6 from '@/assets/Products/prd-img6.webp';
-import prdImg9 from '@/assets/Products/prd-img9.webp';
-import prdImg10 from '@/assets/Products/prd-img10.webp';
-import prdImg11 from '@/assets/Products/prd-img11.webp';
 
 gsap.registerPlugin(ScrollTrigger);
-
-// Toggle between Cloudinary and local assets
-const USE_CLOUDINARY = false;  // Set to true to use Cloudinary
-
-// Local poster mapping for videos
-const localPosters = {
-  'Prd1': prdImg1,
-  'Prd3': prdImg3,
-  'Prd4': prdImg4,
-  'Prd6': prdImg6,
-  'Prd9': prdImg9,
-  'Prd10': prdImg10,
-  'Prd11': prdImg11,
-};
 
 const ProductsSection = () => {
   const containerRef = useRef(null);
@@ -218,79 +193,22 @@ const ProductsSection = () => {
           {ProductsData.map((product) => {
             const Icon = iconMap[product.headerIcon?.type] || Droplet;
 
-            // Determine if this product uses a video
-            // Vite imports return the actual URL string, so we can check it directly
-            const isVideo = product.image && String(product.image).toLowerCase().includes('.mp4');
-
-            // Get the product key by checking which key name appears in the URL
-            // Vite adds hash suffixes like Prd2_nkx4l4, so we need to match the base name
-            const productKey = Object.keys(productCloudinaryIds).find(key => {
-              if (key.includes('Poster')) return false;
-              const imageStr = String(product.image);
-              // Match the key at the start of the filename (before any hash or extension)
-              // e.g., "Prd2" matches "/assets/Prd2_nkx4l4.webp"
-              console.log(imageStr);
-
-              return imageStr.includes(`/${key}_`) || imageStr.includes(`/${key}.`);
-            });
-
             return (
               <div
                 key={product.id}
                 onClick={() => navigate(`/products#${product.slug}`)}
                 className="product-card flex flex-col h-full overflow-hidden bg-white shadow-md rounded-lg w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] transition-none cursor-pointer"
               >
-                {/* Image/Video */}
+                {/* Image */}
                 <div
                   className="relative w-full overflow-hidden bg-gray-200"
                   style={{ height: '200px' }}
                 >
-                  {USE_CLOUDINARY ? (
-                    // Cloudinary Mode
-                    isVideo ? (
-                      <OptimizedVideo
-                        publicId={productCloudinaryIds[productKey]}
-                        posterPublicId={productCloudinaryIds[`${productKey}Poster`]}
-                        width={400}
-                        height={200}
-                        autoPlay={false}
-                        muted={true}
-                        loop={true}
-                        controls={false}
-                        className="product-image w-full h-full transition-none object-cover"
-                      />
-                    ) : (
-                      <OptimizedImage
-                        src={product.image}
-                        alt={product.title}
-                        width={600}
-                        height={200}
-                        eager={true}
-                        className="product-image w-full h-full transition-none object-cover"
-                      />
-                    )
-                  ) : (
-                    // Local Assets Mode (fallback)
-                    isVideo ? (
-                      <video
-                        src={product.image}
-                        poster={localPosters[productKey]}
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        className="product-image w-full h-full transition-none object-cover"
-                      />
-                    ) : (
-                      <img
-                        src={product.image}
-                        alt={product.title}
-                        className="product-image w-full h-full transition-none object-cover"
-                        onError={(e) => console.error(`Failed to load image for ${product.title}:`, e)}
-                        onLoad={() => console.log(`Successfully loaded image for ${product.title}`)}
-                      />
-                    )
-                  )}
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    className="product-image w-full h-full transition-none object-cover"
+                  />
 
                   {/* Icon Badge */}
                   <div className="absolute z-10 top-3 right-3 product-icon-badge">

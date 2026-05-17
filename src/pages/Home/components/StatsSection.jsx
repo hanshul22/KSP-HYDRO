@@ -3,7 +3,6 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { StatsImg1, StatsImg2 } from '@/assets';
-import { OptimizedImage } from '@/components';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -63,23 +62,21 @@ const StatsSection = () => {
       {/* Floating Social Buttons */}
       <div className="absolute hidden md:flex right-2 md:right-8 top-1/2 -translate-y-1/2 flex-col gap-3 md:gap-4 z-50">
         <a href="https://t.me/NaazKSP" target="_blank" rel="noopener noreferrer" className="social-btn transition-transform hover:scale-110 active:scale-95" aria-label="Telegram">
-          <OptimizedImage
+          <img
             src={StatsImg1}
             alt="Telegram"
             width={56}
             height={56}
-            className="drop-shadow-md rounded-full"
-            objectFit="contain"
+            className="drop-shadow-md rounded-full object-contain"
           />
         </a>
         <a href="https://wa.me/917073472044" target="_blank" rel="noopener noreferrer" className="social-btn transition-transform hover:scale-110 active:scale-95" aria-label="WhatsApp">
-          <OptimizedImage
+          <img
             src={StatsImg2}
             alt="WhatsApp"
             width={56}
             height={56}
-            className="drop-shadow-md rounded-full"
-            objectFit="contain"
+            className="drop-shadow-md rounded-full object-contain"
           />
         </a>
       </div>

@@ -54,17 +54,33 @@ export { default as Equipement6 } from './images/Equipements/Equipement6.webp';
 export { default as Equipement7 } from './images/Equipements/Equipement7.mp4';
 
 // New Products Directory
-export { default as Prd1 } from './Products/Prd1.mp4';
-export { default as Prd2 } from './Products/prd2.webp';
-export { default as Prd3 } from './Products/Prd3.mp4';
-export { default as Prd4 } from './Products/Prd4.mp4';
-export { default as Prd5 } from './Products/Prd5.mp4';
-export { default as Prd6 } from './Products/Prd6.mp4';
-export { default as Prd7 } from './Products/prd7.webp';
-export { default as Prd8 } from './Products/Prd8.mp4';
-export { default as Prd9 } from './Products/Prd9.mp4';
-export { default as Prd10 } from './Products/Prj10.mp4';
-export { default as Prd11 } from './Products/Prj11.mp4';
+
+//videos
+export { default as PrdVideo1 } from './Products/prd1.mp4';
+export { default as PrdVideo3 } from './Products/prd3.mp4';
+export { default as PrdVideo4 } from './Products/prd4.mp4';
+export { default as PrdVideo5 } from './Products/prd5.mp4';
+export { default as PrdVideo6 } from './Products/prd6.mp4';
+export { default as PrdVideo8 } from './Products/prd8.mp4';
+export { default as PrdVideo9 } from './Products/prd9.mp4';
+export { default as PrdVideo10 } from './Products/prd10.mp4';
+export { default as PrdVideo11 } from './Products/prd11.mp4';
+
+// images
+
+export { default as PrdImg1 } from './Products/prd-img1.webp';
+export { default as PrdImg2 } from './Products/prd-img2.webp';
+export { default as PrdImg3 } from './Products/prd-img3.webp';
+export { default as PrdImg4 } from './Products/prd-img4.webp';
+export { default as PrdImg5 } from './Products/prd-img5.webp';
+export { default as PrdImg6 } from './Products/prd-img6.webp';
+export { default as PrdImg7 } from './Products/prd-img7.webp';
+export { default as PrdImg9 } from './Products/prd-img9.webp';
+export { default as PrdImg10 } from './Products/prd-img10.webp';
+export { default as PrdImg11 } from './Products/prd-img11.webp';
+
+
+
 
 export { default as StatsImg2 } from './images/whatsapp.webp';
 export { default as StatsImg1 } from './images/telegram.webp';

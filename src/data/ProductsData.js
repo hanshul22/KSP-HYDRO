@@ -1,5 +1,6 @@
 import {
-  Prd1, Prd2, Prd3, Prd4, Prd5, Prd6, Prd7, Prd8, Prd9, Prd10, Prd11,
+  PrdImg1, PrdImg2, PrdImg3, PrdImg4, PrdImg5, PrdImg6, PrdImg7, PrdImg9, PrdImg10, PrdImg11,
+  PrdVideo1, PrdVideo3, PrdVideo4, PrdVideo5, PrdVideo6, PrdVideo8, PrdVideo9, PrdVideo10, PrdVideo11,
   Equipement1
 } from "../assets/";
 
@@ -8,7 +9,8 @@ const ProductsData = [
     id: "SPR-001",
     slug: "swimming-pool-systems",
     title: "Swimming Pool Systems",
-    image: Prd1,
+    image: PrdImg1,
+    video: PrdVideo1,
     homeSubtitle: "Advanced filtration and circulation systems for clean, safe, and hygienic swimming pools",
     subtitle:
       "Advanced filtration and circulation systems for clean, safe, and hygienic swimming pools.",
@@ -48,7 +50,8 @@ const ProductsData = [
     id: "WTP-002",
     slug: "water-treatment-plant",
     title: "Water Treatment Plant (WTP)",
-    image: Prd2,
+    image: PrdImg2,
+    video: "",
     homeSubtitle: "Reliable water treatment systems designed to deliver safe, potable water for diverse applications",
     subtitle:
       "Reliable water treatment systems designed to deliver safe, potable water for diverse applications.",
@@ -89,7 +92,8 @@ const ProductsData = [
     id: "STP-003",
     slug: "sewage-treatment-plant",
     title: "Sewage Treatment Plant (STP)",
-    image: Prd3,
+    image: PrdImg3,
+    video: PrdVideo3,
     homeSubtitle: "Efficient sewage treatment solutions for safe discharge or reuse of treated wastewater",
     subtitle:
       "Efficient sewage treatment solutions for safe discharge or reuse of treated wastewater.",
@@ -130,7 +134,8 @@ const ProductsData = [
     id: "ETP-004",
     slug: "effluent-treatment-plant",
     title: "Effluent Treatment Plant (ETP)",
-    image: Prd4,
+    image: PrdImg4,
+    video: PrdVideo4,
     homeSubtitle: "Industrial effluent treatment systems designed to handle complex wastewater streams",
     subtitle:
       "Industrial effluent treatment systems designed to handle complex wastewater streams.",
@@ -171,7 +176,8 @@ const ProductsData = [
     id: "RO-005",
     slug: "reverse-osmosis-systems",
     title: "Reverse Osmosis (RO) Systems",
-    image: Prd5,
+    image: PrdImg5,
+    video: PrdVideo5,
     homeSubtitle: "Efficient RO systems for delivering safe drinking water and high-purity industrial water",
     subtitle:
       "Efficient RO systems for delivering safe drinking water and high-purity industrial water.",
@@ -211,7 +217,8 @@ const ProductsData = [
     id: "LRWB-006",
     slug: "lake-revival-water-body-aeration",
     title: "Lake Revival & Water Body Aeration Systems",
-    image: Prd6,
+    image: PrdImg6,
+    video: PrdVideo6,
     homeSubtitle: "Effective aeration and treatment solutions for restoring and maintaining healthy water bodies",
     subtitle:
       "Effective aeration and treatment solutions for restoring and maintaining healthy water bodies.",
@@ -252,7 +259,8 @@ const ProductsData = [
     id: "DRO-007",
     slug: "domestic-ro-systems",
     title: "Domestic RO Systems",
-    image: Prd7,
+    image: PrdImg7,
+    video: "",
     homeSubtitle: "Compact RO systems for safe and reliable drinking water",
     subtitle: "Compact RO systems for safe and reliable drinking water.",
     svg: "right",
@@ -286,7 +294,8 @@ const ProductsData = [
     id: "UF-008",
     slug: "ultra-filtration-systems",
     title: "Ultra Filtration (UF) Systems",
-    image: Prd8,
+    image: PrdImg9,
+    video: PrdVideo8,
     homeSubtitle: "UF systems using membrane filtration to remove bacteria, turbidity, and suspended particles",
     subtitle:
       "UF systems using membrane filtration to remove bacteria, turbidity, and suspended particles.",
@@ -326,7 +335,8 @@ const ProductsData = [
     id: "MBR-009",
     slug: "membrane-bio-reactor",
     title: "Membrane Bio Reactor (MBR)",
-    image: Prd9,
+    image: PrdImg9,
+    video: PrdVideo9,
     homeSubtitle: "Advanced sewage treatment with superior effluent quality and minimal footprint",
     subtitle:
       "Advanced sewage treatment with superior effluent quality and minimal footprint.",
@@ -366,7 +376,8 @@ const ProductsData = [
     id: "MBBR-010",
     slug: "bio-activated-hd-reactor",
     title: "Bio-Activated HD Reactor (B-HD-R)",
-    image: Prd10,
+    image: PrdImg10,
+    video: PrdVideo10,
     homeSubtitle: "Hybrid biological treatment system",
     subtitle: "Hybrid biological treatment system.",
     svg: "left",
@@ -405,7 +416,8 @@ const ProductsData = [
     id: "SMS-012",
     slug: "sequencing-batch-reactor",
     title: "Sequencing Batch Reactor (SBR)",
-    image: Prd11,
+    image: PrdImg11,
+    video: PrdVideo11,
     homeSubtitle: "Batch-based biological treatment system",
     subtitle:
       "Batch-based biological treatment system.",
@@ -446,6 +458,7 @@ const ProductsData = [
     slug: "equipment",
     title: "Equipments",
     image: Equipement1,
+    video: "",
     homeSubtitle: "Advanced automation and treatment equipment",
     subtitle:
       "Advanced automation and treatment equipment for water and wastewater treatment systems.",

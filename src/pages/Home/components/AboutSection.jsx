@@ -2,7 +2,6 @@ import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import aboutImage from '@/assets/images/about.webp';
-import { OptimizedImage } from '@/components';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -154,14 +153,12 @@ const AboutSection = () => {
 
             {/* Image - Added for mobile */}
             <div className="w-full px-0 about-image">
-              <OptimizedImage
+              <img
                 src={aboutImage}
                 alt="Aerial view of wastewater treatment tanks at KSP Hydro Engineers facility"
                 width={400}
                 height={400}
-                responsive={true}
-                sizes="(max-width: 768px) 100vw, 400px"
-                className="rounded-xl shadow-2xl"
+                className="rounded-xl shadow-2xl w-full h-auto"
               />
             </div>
           </div>
@@ -171,14 +168,12 @@ const AboutSection = () => {
         <div className="items-center hidden gap-8 md:grid lg:grid-cols-2 lg:gap-12">
           {/* Left Side - Image */}
           <div className="relative about-image">
-            <OptimizedImage
+            <img
               src={aboutImage}
               alt="Aerial view of wastewater treatment tanks at KSP Hydro Engineers facility"
               width={600}
               height={400}
-              responsive={true}
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
-              className="rounded-lg shadow-lg"
+              className="rounded-lg shadow-lg w-full h-auto"
             />
           </div>
 

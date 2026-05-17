@@ -17,33 +17,8 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import ProductsData from '@/data/ProductsData';
-import { OptimizedVideo, OptimizedImage } from '@/components';
-import { productCloudinaryIds } from '@/data/cloudinaryMapping';
-
-// Import local poster images for videos
-import prdImg1 from '@/assets/Products/prd-img1.webp';
-import prdImg3 from '@/assets/Products/prd-img3.webp';
-import prdImg4 from '@/assets/Products/prd-img4.webp';
-import prdImg6 from '@/assets/Products/prd-img6.webp';
-import prdImg9 from '@/assets/Products/prd-img9.webp';
-import prdImg10 from '@/assets/Products/prd-img10.webp';
-import prdImg11 from '@/assets/Products/prd-img11.webp';
 
 gsap.registerPlugin(ScrollTrigger);
-
-// Toggle between Cloudinary and local assets
-const USE_CLOUDINARY = true;  // Using Cloudinary for production
-
-// Local poster mapping for videos
-const localPosters = {
-  'Prd1': prdImg1,
-  'Prd3': prdImg3,
-  'Prd4': prdImg4,
-  'Prd6': prdImg6,
-  'Prd9': prdImg9,
-  'Prd10': prdImg10,
-  'Prd11': prdImg11,
-};
 
 // Icon mapping based on headerIcon.type
 const iconMap = {
@@ -64,12 +39,9 @@ const ProductSection = ({ product }) => {
   const containerRef = useRef(null);
   const IconComponent = iconMap[product.headerIcon.type] || Droplets;
   const { sections } = product;
-  const isVideo = product.image?.toString().toLowerCase().includes('.mp4');
   
-  // Get the product key (e.g., "Prd1", "Prd2", etc.)
-  const productKey = Object.keys(productCloudinaryIds).find(key => 
-    !key.includes('Poster') && product.image?.toString().includes(key)
-  );
+  // Check if product has a video
+  const hasVideo = product.video && product.video !== "";
 
   const { contextSafe } = useGSAP(() => {
     const mm = gsap.matchMedia();
@@ -290,52 +262,23 @@ const ProductSection = ({ product }) => {
         </div>
 
         {/* Media (Video/Image) Showcase Card */}
-        <div className="media-showcase-card relative w-full mb-12 rounded-xl overflow-hidden shadow-2xl opacity-0 group/video cursor-pointer">
+        <div className="media-showcase-card relative w-full mb-12 rounded-xl overflow-hidden shadow-2xl opacity-0">
           <div className="aspect-[21/9] w-full relative">
-            {USE_CLOUDINARY ? (
-              // Cloudinary Mode
-              isVideo ? (
-                <OptimizedVideo
-                  publicId={productCloudinaryIds[productKey]}
-                  posterPublicId={productCloudinaryIds[`${productKey}Poster`]}
-                  width={1920}
-                  height={820}
-                  autoPlay={false}
-                  muted={true}
-                  loop={true}
-                  controls={true}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <OptimizedImage
-                  publicId={productCloudinaryIds[productKey]}
-                  width={1920}
-                  height={820}
-                  className="w-full h-full"
-                  objectFit="cover"
-                />
-              )
+            {hasVideo ? (
+              <video
+                src={product.video}
+                poster={product.image}
+                controls
+                controlsList="nodownload"
+                playsInline
+                className="w-full h-full object-cover bg-black"
+              />
             ) : (
-              // Local Assets Mode (fallback)
-              isVideo ? (
-                <video
-                  src={product.image}
-                  poster={localPosters[productKey]}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="w-full h-full object-cover"
-                  onError={(e) => console.error(`Failed to load image for ${product.title}:`, e)}
-                  onLoad={() => console.log(`Successfully loaded image for ${product.title}`)}
-                />
-              )
+              <img
+                src={product.image}
+                alt={product.title}
+                className="w-full h-full object-cover"
+              />
             )}
           </div>
         </div>

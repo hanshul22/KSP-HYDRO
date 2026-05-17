@@ -16,6 +16,7 @@ export default defineConfig(({ mode }) => ({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  assetsInclude: ['**/*.mp4', '**/*.webm', '**/*.ogg'],
   server: {
     host: '::',
     port: 8080,

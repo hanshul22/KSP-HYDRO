@@ -56,13 +56,13 @@ export { default as Equipement7 } from './images/Equipements/Equipement7.mp4';
 // New Products Directory
 
 //videos
-export { default as PrdVideo1 } from './Products/prd1.mp4';
-export { default as PrdVideo3 } from './Products/prd3.mp4';
-export { default as PrdVideo4 } from './Products/prd4.mp4';
-export { default as PrdVideo5 } from './Products/prd5.mp4';
-export { default as PrdVideo6 } from './Products/prd6.mp4';
-export { default as PrdVideo8 } from './Products/prd8.mp4';
-export { default as PrdVideo9 } from './Products/prd9.mp4';
+export { default as PrdVideo1 } from './Products/Prd1.mp4';
+export { default as PrdVideo3 } from './Products/Prd3.mp4';
+export { default as PrdVideo4 } from './Products/Prd4.mp4';
+export { default as PrdVideo5 } from './Products/Prd5.mp4';
+export { default as PrdVideo6 } from './Products/Prd6.mp4';
+export { default as PrdVideo8 } from './Products/Prd8.mp4';
+export { default as PrdVideo9 } from './Products/Prd9.mp4';
 export { default as PrdVideo10 } from './Products/prd10.mp4';
 export { default as PrdVideo11 } from './Products/prd11.mp4';
 

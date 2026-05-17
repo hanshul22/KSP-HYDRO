@@ -12,7 +12,7 @@
  */
 
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import OptimizedVideo from './Optimizedvideo.jsx';
 
 // Mock Cloudinary
@@ -73,6 +73,7 @@ describe('OptimizedVideo - Bug Condition Exploration', () => {
       
       // Arrange: Mock cached poster image
       const originalImage = window.Image;
+      // eslint-disable-next-line no-unused-vars
       let posterImageInstance;
       
       window.Image = class MockImage {
@@ -169,8 +170,6 @@ describe('OptimizedVideo - Bug Condition Exploration', () => {
       
       // Assert: Cloudinary poster should be visible
       await waitFor(() => {
-        const style = posterImg.style;
-        
         // EXPECTED: Poster should have opacity: 1 or not be hidden
         // ACTUAL (unfixed code): Poster will be hidden
         expect(posterImg).toBeVisible();

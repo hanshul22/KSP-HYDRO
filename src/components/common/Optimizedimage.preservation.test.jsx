@@ -13,7 +13,7 @@
  */
 
 import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import fc from 'fast-check';
 import OptimizedImage from './Optimizedimage.jsx';
 

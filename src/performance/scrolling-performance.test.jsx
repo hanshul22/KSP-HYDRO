@@ -14,8 +14,7 @@
  * passes after implementation.
  */
 
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import fc from 'fast-check';
 
 describe('Scrolling Performance - Bug Condition Exploration', () => {
@@ -181,12 +180,10 @@ describe('Scrolling Performance - Bug Condition Exploration', () => {
       
       // Arrange: Mock getBoundingClientRect to track calls
       const originalGetBoundingClientRect = Element.prototype.getBoundingClientRect;
-      let layoutReadCount = 0;
       let layoutReadsDuringScroll = 0;
       let isScrolling = false;
       
       Element.prototype.getBoundingClientRect = function() {
-        layoutReadCount++;
         if (isScrolling) {
           layoutReadsDuringScroll++;
         }
@@ -257,10 +254,8 @@ describe('Scrolling Performance - Bug Condition Exploration', () => {
       // Assert: Should have code splitting
       // EXPECTED: hasVendorChunk and hasRouteChunks should be true
       // ACTUAL (unfixed code): May not have proper code splitting
-      
-      // This is a placeholder assertion - actual bundle size check requires build
-      // The real test will be in the build verification step
-      expect(true).toBe(true); // Placeholder
+      expect(hasVendorChunk).toBe(true);
+      expect(hasRouteChunks).toBe(true);
       
       console.log('Bundle optimization check - requires build-time verification');
     });
@@ -298,9 +293,10 @@ describe('Scrolling Performance - Bug Condition Exploration', () => {
       const hasFontDisplay = fontLinks.some(link => link.href.includes('display=swap'));
       
       // Assert: Fonts should be optimized
-      // EXPECTED: hasFontDisplay should be true
+      // EXPECTED: hasFontDisplay should be true and fontPreloads should exist
       // ACTUAL (unfixed code): hasFontDisplay will be false
       expect(hasFontDisplay).toBe(true);
+      expect(fontPreloads.length).toBeGreaterThan(0);
       
       console.log(`Font optimization: ${hasFontDisplay ? 'Optimized' : 'Not optimized'}`);
     });

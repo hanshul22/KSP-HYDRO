@@ -507,7 +507,6 @@ describe('Integration - Preservation Property Tests', () => {
       
       const width = 1200;
       const height = 675;
-      const expectedAspectRatio = `${width} / ${height}`;
       
       // Act: Render video with width and height
       const { container } = render(

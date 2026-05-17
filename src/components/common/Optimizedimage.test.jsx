@@ -15,7 +15,7 @@
  */
 
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import fc from 'fast-check';
 import OptimizedImage from './Optimizedimage.jsx';
 
@@ -69,6 +69,7 @@ describe('OptimizedImage - Bug Condition Exploration', () => {
       
       // Mock Image constructor to simulate cached image
       const originalImage = window.Image;
+      // eslint-disable-next-line no-unused-vars
       let imageInstance;
       
       window.Image = class MockImage {
@@ -138,6 +139,7 @@ describe('OptimizedImage - Bug Condition Exploration', () => {
       
       // Mock AdvancedImage component
       vi.mock('@cloudinary/react', () => ({
+        // eslint-disable-next-line no-unused-vars
         AdvancedImage: ({ cldImg, onLoad, style, ...props }) => {
           // Simulate cached image behavior
           const img = document.createElement('img');
@@ -211,6 +213,7 @@ describe('OptimizedImage - Bug Condition Exploration', () => {
           async (width, height, naturalWidth, naturalHeight) => {
             // Arrange: Mock cached image
             const originalImage = window.Image;
+            // eslint-disable-next-line no-unused-vars
             let imageInstance;
             
             window.Image = class MockImage {

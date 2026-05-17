@@ -21,7 +21,7 @@ const CloudinaryTest = () => {
           </h2>
           <ol className="list-decimal list-inside space-y-2 text-gray-700">
             <li>Open browser console (F12)</li>
-            <li>Look for "Cloudinary URL:" logs</li>
+            <li>Look for &ldquo;Cloudinary URL:&rdquo; logs</li>
             <li>Copy each URL and test in browser</li>
             <li>✅ = Image/video loads correctly</li>
             <li>❌ = 404 error (publicId is wrong)</li>

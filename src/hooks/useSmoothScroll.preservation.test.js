@@ -14,7 +14,6 @@
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { renderHook, waitFor } from '@testing-library/react';
-import fc from 'fast-check';
 import useSmoothScroll from './useSmoothScroll.js';
 
 // Mock Lenis

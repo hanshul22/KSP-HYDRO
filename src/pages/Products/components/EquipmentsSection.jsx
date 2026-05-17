@@ -12,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
 // ─────────────────────────────────────────────────────────
 // TOGGLE: Set to true to use Cloudinary, false for local files
 // ─────────────────────────────────────────────────────────
-const USE_CLOUDINARY = false;  // ← Change to true when ready to use Cloudinary
+const USE_CLOUDINARY = true;  // ← Using Cloudinary for production
 
 const equipments = [
   {

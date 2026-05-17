@@ -32,7 +32,7 @@ import prdImg11 from '@/assets/Products/prd-img11.webp';
 gsap.registerPlugin(ScrollTrigger);
 
 // Toggle between Cloudinary and local assets
-const USE_CLOUDINARY = false;  // Set to true to use Cloudinary
+const USE_CLOUDINARY = true;  // Using Cloudinary for production
 
 // Local poster mapping for videos
 const localPosters = {

@@ -25,7 +25,6 @@ import {
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import {logo} from '@/assets';
-import { OptimizedImage } from '@/components';
 import { navItems } from '@/data/navigationData';
 
 // Icon mapping for dropdown items
@@ -273,13 +272,13 @@ const Header = () => {
         <div className="flex items-center justify-between px-8 py-4 bg-white/95 backdrop-blur-md rounded-full shadow-xl lg:px-12 border border-gray-100">
           {/* Logo Section */}
           <Link to="/" className="flex items-center gap-3 nav-content-item">
-            <OptimizedImage
+            <img
               src={logo}
               alt="KSP Hydro Engineers Logo"
               width={40}
               height={40}
-              eager={true}
-              objectFit="contain"
+              className="object-contain"
+              loading="eager"
             />
             <div className="flex flex-col">
               <span className="text-sm font-bold text-gray-900 sm:text-base lg:text-lg block leading-tight">

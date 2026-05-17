@@ -33,29 +33,10 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // Route-based code splitting
-          if (id.includes('src/pages/Home')) {
-            return 'home';
-          }
-          if (id.includes('src/pages/Products')) {
-            return 'products';
-          }
-          if (id.includes('src/pages/Services')) {
-            return 'services';
-          }
-          if (id.includes('src/pages/Projects')) {
-            return 'projects';
-          }
-          if (id.includes('src/pages/About')) {
-            return 'about';
-          }
-          if (id.includes('src/pages/Contact')) {
-            return 'contact';
-          }
-          
-          // Vendor chunks
+          // Only split vendor chunks to avoid circular dependencies
+          // Let Vite automatically handle route-based splitting
           if (id.includes('node_modules')) {
-            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
+            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
               return 'react-vendor';
             }
             if (id.includes('@radix-ui') || id.includes('lucide-react') || id.includes('framer-motion') || 
@@ -65,8 +46,11 @@ export default defineConfig(({ mode }) => ({
             if (id.includes('gsap') || id.includes('lenis')) {
               return 'animation-vendor';
             }
+            if (id.includes('@cloudinary')) {
+              return 'cloudinary-vendor';
+            }
             if (id.includes('date-fns') || id.includes('react-hook-form') || id.includes('zod') || 
-                id.includes('@hookform/resolvers') || id.includes('sonner')) {
+                id.includes('@hookform/resolvers') || id.includes('sonner') || id.includes('@emailjs')) {
               return 'utils-vendor';
             }
           }

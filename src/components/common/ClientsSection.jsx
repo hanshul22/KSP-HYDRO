@@ -21,7 +21,6 @@ import {
   Client19,
   Client20,
 } from '@/assets';
-import { OptimizedImage } from '@/components';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -31,12 +30,12 @@ gsap.registerPlugin(ScrollTrigger);
 // Memoized LogoCard component to prevent unnecessary re-renders
 const LogoCard = memo(({ logo }) => (
   <div className="bg-white rounded-xl p-5 shadow-sm w-[160px] h-[120px] md:w-[180px] md:h-[130px] flex items-center justify-center flex-shrink-0 mx-3">
-    <OptimizedImage
+    <img
       src={logo.src}
       alt={logo.alt}
       width={140}
       height={90}
-      objectFit="contain"
+      className="object-contain"
     />
   </div>
 ));

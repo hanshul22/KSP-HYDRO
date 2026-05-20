@@ -1,5 +1,5 @@
 import {
-  PrdImg1, PrdImg2, PrdImg3, PrdImg4, PrdImg5, PrdImg6, PrdImg7, PrdImg9, PrdImg10, PrdImg11,
+  PrdImg1, PrdImg2, PrdImg3, PrdImg4, PrdImg5, PrdImg6, PrdImg7,PrdImg8, PrdImg9, PrdImg10, PrdImg11,
   PrdVideo1, PrdVideo3, PrdVideo4, PrdVideo5, PrdVideo6, PrdVideo8, PrdVideo9, PrdVideo10, PrdVideo11,
   Equipement1
 } from "../assets/";
@@ -294,7 +294,7 @@ const ProductsData = [
     id: "UF-008",
     slug: "ultra-filtration-systems",
     title: "Ultra Filtration (UF) Systems",
-    image: PrdImg9,
+    image: PrdImg8,
     video: PrdVideo8,
     homeSubtitle: "UF systems using membrane filtration to remove bacteria, turbidity, and suspended particles",
     subtitle:
